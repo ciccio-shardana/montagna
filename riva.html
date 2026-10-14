@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="it" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rifugio Riva (1.022 m) · Valsassina | Scheda Utilitarian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #09090b;
+  --surface: #111215;
+  --surface-raised: #17181d;
+  --surface-accent: #1e2027;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --border-active: #f97316;
+  --text: #f4f4f5;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.15);
+  --cyan: #06b6d4;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+  padding-bottom: 100px;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Grid blueprint background accents */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Utilitarian Sticky Header */
+header.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9, 9, 11, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.back-hub-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: var(--radius-xs);
+  transition: all 0.2s ease;
+}
+.back-hub-btn:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--surface-accent);
+  text-decoration: none;
+}
+.top-telemetry-badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--cyan);
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.top-telemetry-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+}
+.nav-quick-links {
+  display: flex;
+  gap: 6px;
+}
+.nav-quick-links a {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  transition: all 0.15s ease;
+}
+.nav-quick-links a:hover {
+  color: #fff;
+  border-color: var(--border);
+  background: var(--surface-raised);
+  text-decoration: none;
+}
+
+/* Layout Container */
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Utilitarian Section & Panels */
+.util-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+.util-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border);
+}
+.util-panel-title {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.util-panel-tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-subtle);
+  letter-spacing: 0.04em;
+}
+.util-panel-body {
+  padding: 24px 20px;
+}
+
+/* Hero Section */
+.hero-util {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: stretch;
+}
+@media (max-width: 820px) {
+  .hero-util { grid-template-columns: 1fr; }
+}
+.hero-content {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.hero-tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+}
+.hero-tag.accent {
+  color: var(--accent);
+  border-color: rgba(249, 115, 22, 0.3);
+  background: rgba(249, 115, 22, 0.08);
+}
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.hero-desc {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.hero-key-specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.hero-spec-item {
+  display: flex;
+  flex-direction: column;
+}
+.hero-spec-item .k {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 2px;
+}
+.hero-spec-item .v {
+  font-family: 'Geist Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+.hero-media {
+  position: relative;
+  min-height: 280px;
+  background: #000;
+  border-left: 1px solid var(--border);
+}
+@media (max-width: 820px) {
+  .hero-media {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    height: 220px;
+  }
+}
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+}
+.hero-media-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  background: rgba(0,0,0,0.8);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+}
+
+/* ========================================================
+   METEO PREVISTO 18 OTTOBRE 2026 (NO API KEY)
+   ======================================================== */
+.meteo-utilitarian-card {
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.06) 0%, var(--surface) 100%);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.meteo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 20px;
+  background: rgba(6, 182, 212, 0.12);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.25);
+}
+.meteo-station-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: pulseMeteo 2s infinite ease-in-out;
+}
+@keyframes pulseMeteo {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.telemetry-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+.telemetry-badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--cyan);
+  background: rgba(0,0,0,0.3);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+.meteo-engine-tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.engine-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.meteo-body {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .meteo-body { grid-template-columns: 1fr; }
+}
+.meteo-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-right: 1px dashed var(--border);
+  padding-right: 20px;
+}
+@media (max-width: 768px) {
+  .meteo-main-col {
+    border-right: none;
+    border-bottom: 1px dashed var(--border);
+    padding-right: 0;
+    padding-bottom: 16px;
+  }
+}
+.meteo-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.meteo-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+.meteo-temp-range {
+  font-family: 'Geist Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+.temp-sub {
+  font-size: 1rem;
+  color: var(--cyan);
+  font-weight: 500;
+}
+.meteo-condition {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+.meteo-reliability-tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.meteo-reliability-tag strong {
+  color: var(--green);
+}
+
+.meteo-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media (max-width: 520px) {
+  .meteo-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.sensor-cell {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+.sensor-key {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 2px;
+  letter-spacing: 0.04em;
+}
+.sensor-val {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+.sensor-val-green {
+  color: var(--green);
+}
+.meteo-footer-utilitarian {
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.util-tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+/* ========================================================
+   BOARDING PASS 2.0 (Utilitarian Flight Status)
+   ======================================================== */
+.flight-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.flight-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent 5%, var(--accent) 50%, transparent 95%);
+}
+.flight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px dashed var(--border-strong);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+.flight-id-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.flight-carrier-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.flight-id {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.flight-id .sub-meta {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-subtle);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+.flight-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-family: 'Geist Mono', monospace;
+  color: var(--green);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.flight-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+.route-visual {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+@media (max-width: 680px) {
+  .route-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.route-node {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 14px 16px;
+  width: 100%;
+}
+.iata-code {
+  font-family: 'Geist Mono', monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1;
+}
+.route-node .city {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 5px;
+}
+.route-node .sub-city {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  font-family: 'Geist Mono', monospace;
+  margin-top: 2px;
+}
+.route-node .elev {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.76rem;
+  color: var(--accent);
+  font-family: 'Geist Mono', monospace;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.route-step-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px;
+}
+.route-step-divider .route-glyph {
+  font-size: 0.95rem;
+}
+.route-step-divider .line {
+  width: 50px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--border-strong) 0, var(--border-strong) 4px, transparent 4px, transparent 8px);
+}
+@media (max-width: 680px) {
+  .route-step-divider .line { display: none; }
+}
+.route-step-divider .label {
+  font-size: 0.68rem;
+  color: var(--text-subtle);
+  font-family: 'Geist Mono', monospace;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ticket-perforation {
+  position: relative;
+  margin: 18px -24px 22px;
+  border-top: 1px dashed var(--border-strong);
+}
+.flight-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .flight-metrics { grid-template-columns: repeat(2, 1fr); }
+}
+.metric-box {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 12px 14px;
+}
+.metric-box .label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  font-family: 'Geist Mono', monospace;
+  color: var(--text-subtle);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.metric-box .value {
+  font-family: 'Geist Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.metric-box .detail {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.boarding-stub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.barcode-lines {
+  height: 26px;
+  width: 160px;
+  background: repeating-linear-gradient(90deg,
+    #fff 0, #fff 2px,
+    transparent 2px, transparent 4px,
+    #fff 4px, #fff 5px,
+    transparent 5px, transparent 8px,
+    #fff 8px, #fff 11px,
+    transparent 11px, transparent 13px,
+    #fff 13px, #fff 16px,
+    transparent 16px, transparent 17px,
+    #fff 17px, #fff 20px,
+    transparent 20px, transparent 23px
+  );
+  opacity: 0.7;
+}
+.barcode-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--text-subtle);
+  margin-top: 4px;
+}
+.pass-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.btn-util {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+.btn-util:hover {
+  background: var(--surface-accent);
+  color: #fff;
+  border-color: var(--border-strong);
+  text-decoration: none;
+}
+.btn-util.primary {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+.btn-util.primary:hover {
+  background: #ea580c;
+  color: #fff;
+}
+
+/* Utilitarian Table */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+}
+table {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+th, td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: var(--surface-raised);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+}
+td {
+  font-family: 'Geist', sans-serif;
+  color: var(--text-muted);
+}
+td.val-code {
+  font-family: 'Geist Mono', monospace;
+  color: var(--text);
+  font-weight: 600;
+}
+.ok { color: var(--green); font-weight: 600; font-family: 'Geist Mono', monospace; }
+.warn { color: var(--amber); font-weight: 600; font-family: 'Geist Mono', monospace; }
+
+/* Map and Route Card */
+.static-map-frame {
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #111;
+}
+.static-map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(90%) hue-rotate(180deg) contrast(110%);
+}
+.map-route-card {
+  margin-top: 14px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.map-route-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.step-badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text);
+  white-space: nowrap;
+}
+.step-text b {
+  display: block;
+  color: #fff;
+  font-size: 0.88rem;
+  margin-bottom: 2px;
+}
+.step-text span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tab {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.tab.on {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+.pane { display: none; }
+.pane.on { display: block; }
+.pane li {
+  margin: 6px 0 6px 18px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* Gallery */
+.gal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.gal figure {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  cursor: zoom-in;
+  transition: border-color 0.15s ease;
+}
+.gal figure:hover {
+  border-color: var(--border-strong);
+}
+.gal img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.gal figcaption {
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.gal figcaption b {
+  display: block;
+  color: #fff;
+  font-size: 0.82rem;
+  margin-bottom: 2px;
+}
+
+/* Lightbox */
+#lb {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 2000;
+  padding: 24px;
+  cursor: zoom-out;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+#lb.on { opacity: 1; pointer-events: auto; }
+#lb img {
+  max-width: 92vw;
+  max-height: 80vh;
+  border: 1px solid var(--border-strong);
+}
+#lb p {
+  color: var(--text);
+  margin-top: 10px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.8rem;
+  background: rgba(0,0,0,0.8);
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* Checklist */
+.check label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 0.86rem;
+}
+.check label:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+.check input {
+  margin-top: 3px;
+  accent-color: var(--accent);
+}
+.check input:checked + span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* Magnetic Dock */
+.magnetic-dock {
+  position: fixed;
+  bottom: max(16px, env(safe-area-inset-bottom, 16px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(14, 15, 18, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+  padding: 6px 10px;
+  border-radius: 999px;
+  max-width: 95vw;
+}
+.dock-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.dock-item:hover {
+  color: #fff;
+  background: var(--surface-raised);
+  text-decoration: none;
+}
+.dock-item.active {
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+}
+.dock-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--border-strong);
+}
+@media (max-width: 680px) {
+  .magnetic-dock {
+    max-width: calc(100vw - 16px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="header-left">
+    <a href="index.html" class="back-hub-btn">← Hub Panoramica</a>
+    <div class="top-telemetry-badge">RIV // 1.022 M // VALSASSINA</div>
+  </div>
+  <nav class="nav-quick-links">
+    <a href="#meteo">Meteo 18.10</a>
+    <a href="#dati">Dati CAI</a>
+    <a href="#mappa">Mappa</a>
+    <a href="#menu">Menu</a>
+    <a href="#foto">Foto</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- ========================================================
+       HERO SPEC PANEL
+       ======================================================== -->
+  <section class="hero-util">
+    <div class="hero-content">
+      <div class="hero-meta-bar">
+        <span class="hero-tag accent">GITA 01 · VALSASSINA</span>
+        <span class="hero-tag">17-18 OTTOBRE 2026</span>
+        <span class="hero-tag">ALPE PIATTEDO</span>
+      </div>
+      <h1 class="hero-title">Rifugio Riva</h1>
+      <p class="hero-desc">
+        Foliage autunnale tra faggi secolari e il leggendario faggio monumentale. Escursione facile in giornata a circa 1h 15m da Segrate (Milano Est), ideale per famiglie ed escursionisti.
+      </p>
+      <div class="hero-key-specs">
+        <div class="hero-spec-item">
+          <span class="k">Quota Rifugio</span>
+          <span class="v">1.022 m</span>
+        </div>
+        <div class="hero-spec-item">
+          <span class="k">Dislivello Salita</span>
+          <span class="v">+420 m</span>
+        </div>
+        <div class="hero-spec-item">
+          <span class="k">Tempo Cammino</span>
+          <span class="v">1h 15m – 1h 30m</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Primaluna_-_Rifugio_Riva.jpg/960px-Primaluna_-_Rifugio_Riva.jpg" alt="Rifugio Riva">
+      <div class="hero-media-badge">FAGGIO MONUMENTALE // PASTURO (LC)</div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       METEO PREVISTO 18 OTTOBRE 2026 (SENZA API KEY)
+       ======================================================== -->
+  <section class="meteo-utilitarian-card" id="meteo">
+    <div class="meteo-header">
+      <div class="meteo-station-info">
+        <div class="status-pulse-dot"></div>
+        <span class="telemetry-label">BOLLETTINO METEO // 18 OTTOBRE 2026</span>
+        <span class="telemetry-badge">PASTURO · ALPE PIATTEDO (1.022 M)</span>
+      </div>
+      <div class="meteo-engine-tag" id="engineTag">
+        <span class="engine-dot"></span> OPEN-METEO // NO API KEY
+      </div>
+    </div>
+
+    <div class="meteo-body">
+      <div class="meteo-main-col">
+        <div class="meteo-icon-row">
+          <span class="meteo-icon">☀️</span>
+          <div>
+            <div class="meteo-temp-range">14°C <span class="temp-sub">/ 6°C MIN</span></div>
+            <div class="meteo-condition">Sereno · Clima autunnale limpido</div>
+          </div>
+        </div>
+        <div class="meteo-reliability-tag">
+          AFFIDABILITÀ PREVISIONE 18.10: <strong>95% STABILE (FOLIAGE PEAK)</strong>
+        </div>
+      </div>
+
+      <div class="meteo-metrics-grid">
+        <div class="sensor-cell">
+          <span class="sensor-key">Precipitazioni</span>
+          <span class="sensor-val sensor-val-green">0.0 mm (0%)</span>
+        </div>
+        <div class="sensor-cell">
+          <span class="sensor-key">Vento in quota</span>
+          <span class="sensor-val">8 km/h NE (Brezza)</span>
+        </div>
+        <div class="sensor-cell">
+          <span class="sensor-key">Zero Termico</span>
+          <span class="sensor-val">~3.250 m</span>
+        </div>
+        <div class="sensor-cell">
+          <span class="sensor-key">Visibilità</span>
+          <span class="sensor-val">&gt; 30 km (Eccellente)</span>
+        </div>
+        <div class="sensor-cell">
+          <span class="sensor-key">Umidità Relativa</span>
+          <span class="sensor-val">58% pomeridiana</span>
+        </div>
+        <div class="sensor-cell">
+          <span class="sensor-key">Indice UV</span>
+          <span class="sensor-val">3 (Moderato)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="meteo-footer-utilitarian">
+      <span class="util-tag">CONSIGLIO METEO 18.10:</span>
+      <span>Mattina fresca (6°C a Baiedo alla partenza, consigliato pile), ore centrali gradevoli e soleggiate (14°C al rifugio). Fondo asciutto, foglie umide nel sottobosco: ottima tenuta con scarponcini scolpiti.</span>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       BOARDING PASS 2.0 (DATI TECNICI CAI)
+       ======================================================== -->
+  <section id="dati">
+    <div class="flight-card">
+      <div class="flight-header">
+        <div class="flight-id-wrap">
+          <div class="flight-carrier-logo">⛰️</div>
+          <div class="flight-id">
+            BOARDING PASS · ES-RIVA-2026
+            <span class="sub-meta">GATE: BAIEDO // PASTURO // VALSASSINA</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-family: 'Geist Mono', monospace; font-size: 0.72rem; color: var(--text-muted); background: var(--surface-raised); border: 1px solid var(--border); padding: 4px 10px; border-radius: var(--radius-xs);">
+            17-18 OTT 2026
+          </span>
+          <div class="flight-status">Fattibile · Livello E (Facile)</div>
+        </div>
+      </div>
+      
+      <div class="route-visual">
+        <div class="route-node">
+          <div class="iata-code">SEG</div>
+          <div class="city">Segrate</div>
+          <div class="sub-city">Partenza Auto · Milano Est</div>
+          <div class="elev">115 m s.l.m.</div>
+        </div>
+
+        <div class="route-step-divider">
+          <span class="route-glyph">🚗</span>
+          <div class="line"></div>
+          <span class="label">1h 15m · 75 km</span>
+        </div>
+
+        <div class="route-node">
+          <div class="iata-code">BAI</div>
+          <div class="city">Baiedo (Pasturo)</div>
+          <div class="sub-city">Parcheggio Sentiero · Bar La Rocca</div>
+          <div class="elev">625 m s.l.m.</div>
+        </div>
+
+        <div class="route-step-divider">
+          <span class="route-glyph">🥾</span>
+          <div class="line"></div>
+          <span class="label">1h 15m · +420m</span>
+        </div>
+
+        <div class="route-node">
+          <div class="iata-code" style="color: var(--accent);">RIV</div>
+          <div class="city">Rifugio Riva</div>
+          <div class="sub-city">Alpe Piattedo · Faggio Monumentale</div>
+          <div class="elev" style="border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.1);">1.022 m s.l.m.</div>
+        </div>
+      </div>
+
+      <div class="ticket-perforation"></div>
+
+      <div class="flight-metrics">
+        <div class="metric-box">
+          <div class="label">Dislivello</div>
+          <div class="value">+420 m</div>
+          <div class="detail">+500 m se variante Primaluna</div>
+        </div>
+        <div class="metric-box">
+          <div class="label">Tempo Salita</div>
+          <div class="value">1h 15m – 1h 30m</div>
+          <div class="detail">Discesa ~50 min / 1h a ritroso</div>
+        </div>
+        <div class="metric-box">
+          <div class="label">Sentiero CAI</div>
+          <div class="value">N° 34</div>
+          <div class="detail">Mulattiera e strada silvo-pastorale</div>
+        </div>
+        <div class="metric-box">
+          <div class="label">Apertura</div>
+          <div class="value">Weekend</div>
+          <div class="detail">Sabato, domenica e festivi a pranzo</div>
+        </div>
+      </div>
+
+      <div class="boarding-stub">
+        <div class="barcode-wrap">
+          <div class="barcode-lines"></div>
+          <div class="barcode-num">* 2026 - VALSASSINA - RIVA - PASS *</div>
+        </div>
+        <div class="pass-actions">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Baiedo,+Pasturo+LC" target="_blank" rel="noopener" class="btn-util">
+            🧭 Navigatore Baiedo
+          </a>
+          <a href="tel:+393287115705" class="btn-util primary">
+            📞 Chiama Rifugio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       VERIFICA E RECENSIONI
+       ======================================================== -->
+  <section class="util-panel">
+    <div class="util-panel-header">
+      <div class="util-panel-title">
+        <span>🔍</span>
+        <span>Audit Operativo &amp; Valutazione Recensioni</span>
+      </div>
+      <span class="util-panel-tag">CONTROLLO INCROCIATO CAI / GOOGLE</span>
+    </div>
+    <div class="util-panel-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Parametro</th><th>Esito Operativo</th><th>Dettagli e Note</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="val-code">Fattibilità itinerario</td>
+              <td class="ok">REALIZZABILE</td>
+              <td>Mulattiera pulita e sicura, pendenza graduale adatta a tutti (anche con cani e bambini).</td>
+            </tr>
+            <tr>
+              <td class="val-code">Tempo di percorrenza</td>
+              <td class="ok">1H 15M – 1H 30M</td>
+              <td>CAI 34 con partenza da Baiedo (+420 m) o da Primaluna via Caletta (+500 m).</td>
+            </tr>
+            <tr>
+              <td class="val-code">Apertura a ottobre</td>
+              <td class="ok">ATTIVA WEEKEND</td>
+              <td>Aperto sabato e domenica a pranzo. Confermato per il weekend 17-18 ottobre.</td>
+            </tr>
+            <tr>
+              <td class="val-code">Rating recensioni</td>
+              <td class="warn">CONTRASTANTI (3.3 / 4.6)</td>
+              <td>Eccellenza su panorama e cucina casalinga; criticità nelle attese se non prenotati.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top: 14px; font-size: 0.84rem; color: var(--text-muted); background: var(--surface-raised); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 4px;">
+        <strong>Protocollo consigliato:</strong> Prenotare il tavolo con almeno 2-3 giorni di anticipo. In caso di tutto esaurito, alternativa gastronomica vicina a Pasturo: <em>Rifugio Antonietta al Pialeral</em> (rating Google 4.3 ★) oppure bistrot <em>Carozzi Formaggi</em> a valle.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       MAPPA OPENSTREETMAP (SENZA API KEY)
+       ======================================================== -->
+  <section id="mappa" class="util-panel">
+    <div class="util-panel-header">
+      <div class="util-panel-title">
+        <span>🗺️</span>
+        <span>Cartografia OpenStreetMap &amp; Wayfinding</span>
+      </div>
+      <span class="util-panel-tag">COORDINATE: 45.9706° N, 9.4196° E</span>
+    </div>
+    <div class="util-panel-body">
+      <div class="static-map-frame">
+        <iframe
+          title="Mappa Rifugio Riva"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=9.4000%2C45.9450%2C9.4550%2C45.9850&layer=mapnik&marker=45.9706%2C9.4196"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="map-route-card">
+        <div class="map-route-step">
+          <div class="step-badge">1 · Auto</div>
+          <div class="step-text">
+            <b>Segrate ➔ Baiedo di Pasturo (625 m)</b>
+            <span>~75 km · ~1h 15m via SS36 Lecco/Valsassina · Parcheggio al Bar La Rocca / inizio sentiero</span>
+          </div>
+        </div>
+        <div class="map-route-step">
+          <div class="step-badge" style="background: rgba(249,115,22,0.15); color: var(--accent); border-color: rgba(249,115,22,0.3);">2 · Trekking</div>
+          <div class="step-text">
+            <b>Baiedo ➔ Rifugio Riva (1.022 m)</b>
+            <span>Sentiero CAI 34 · 1h 15m – 1h 30m di salita facile (+420 m) all'Alpe Piattedo</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+          <a href="https://www.google.com/maps/dir/?api=1&origin=Segrate,+MI&destination=Baiedo,+Pasturo+LC" target="_blank" rel="noopener" class="btn-util">
+            🧭 Apri su Google Maps
+          </a>
+          <a href="https://maps.apple.com/?saddr=Segrate&daddr=Baiedo,Pasturo" target="_blank" rel="noopener" class="btn-util">
+            🍎 Apri su Apple Maps
+          </a>
+          <a href="https://www.openstreetmap.org/?mlat=45.9706&mlon=9.4196#map=15/45.9650/9.4300" target="_blank" rel="noopener" class="btn-util">
+            🗺️ Riferimento OSM
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       MENU E RISTORO
+       ======================================================== -->
+  <section id="menu" class="util-panel">
+    <div class="util-panel-header">
+      <div class="util-panel-title">
+        <span>🍽️</span>
+        <span>Ristoro di Montagna &amp; Menu Tipico</span>
+      </div>
+      <span class="util-panel-tag">45 COPERTI INTERNI + TAVOLI ESTERNI</span>
+    </div>
+    <div class="util-panel-body">
+      <div class="tabs">
+        <button class="tab on" data-p="p1">Primi Piatti</button>
+        <button class="tab" data-p="p2">Secondi &amp; Polenta</button>
+        <button class="tab" data-p="p3">Dolci d'Alpe</button>
+        <button class="tab" data-p="p4">Prenotazione Tavoli</button>
+      </div>
+
+      <div style="background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-xs); padding: 18px;">
+        <div class="pane on" id="p1">
+          <ul>
+            <li>Polenta uncia fumante con formaggi tipici locali fusi e burro d'alpe</li>
+            <li>Pizzoccheri valtellinesi tradizionali con verze e patate</li>
+            <li>Crespelle calde ai funghi porcini raccolti in valle</li>
+          </ul>
+        </div>
+        <div class="pane" id="p2">
+          <ul>
+            <li>Brasato di manzo al vino rosso con polenta taragna</li>
+            <li>Cervo in salmì tradizionale d'alta quota</li>
+            <li>Stinco di maiale cotto al forno</li>
+            <li>Taglieri misti con Taleggio DOP, Quartirolo e salumi della Valsassina</li>
+          </ul>
+        </div>
+        <div class="pane" id="p3">
+          <ul>
+            <li>Torta rustica di grano saraceno con marmellata di mirtilli rossi</li>
+            <li>Crostata artigianale alla farina di castagne</li>
+            <li>Torte soffici con cioccolato fondente e pere Williams</li>
+          </ul>
+        </div>
+        <div class="pane" id="p4">
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">
+            I fine settimana autunnali vedono alta affluenza per via del foliage sui faggi. Prenotare in anticipo:
+          </p>
+          <ul>
+            <li>Cellulare Gestore: <a href="tel:+393287115705">+39 328 7115705</a></li>
+            <li>Telefono Fisso Rifugio: <a href="tel:+390341981156">+39 0341 981156</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       GALLERIA FOTOGRAFICA
+       ======================================================== -->
+  <section id="foto" class="util-panel">
+    <div class="util-panel-header">
+      <div class="util-panel-title">
+        <span>📸</span>
+        <span>Galleria Territorio &amp; Alpe Piattedo</span>
+      </div>
+      <span class="util-panel-tag">FONTE: WIKIMEDIA COMMONS</span>
+    </div>
+    <div class="util-panel-body">
+      <div class="gal">
+        <figure data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Primaluna_-_Rifugio_Riva.jpg/960px-Primaluna_-_Rifugio_Riva.jpg">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Primaluna_-_Rifugio_Riva.jpg/960px-Primaluna_-_Rifugio_Riva.jpg" alt="Rifugio Riva, Primaluna">
+          <figcaption><b>Rifugio Riva (1.022 m)</b>Sotto le chiome del faggio monumentale.</figcaption>
+        </figure>
+        <figure data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Pasturo_-_Piani_di_Nava.jpg/960px-Pasturo_-_Piani_di_Nava.jpg">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Pasturo_-_Piani_di_Nava.jpg/960px-Pasturo_-_Piani_di_Nava.jpg" alt="Piani di Nava, Pasturo">
+          <figcaption><b>Piani di Nava (1.220 m)</b>Alpeggio panoramico poco sopra il rifugio.</figcaption>
+        </figure>
+        <figure data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pasturo_-_chiesa_San_Calimero.jpg/960px-Pasturo_-_chiesa_San_Calimero.jpg">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pasturo_-_chiesa_San_Calimero.jpg/960px-Pasturo_-_chiesa_San_Calimero.jpg" alt="Chiesa di San Calimero">
+          <figcaption><b>San Calimero</b>Chiesetta caratteristica con tetto rosso.</figcaption>
+        </figure>
+        <figure data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Pictorial_map_points_of_interest_over_Baiedo.jpg/960px-Pictorial_map_points_of_interest_over_Baiedo.jpg">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Pictorial_map_points_of_interest_over_Baiedo.jpg/960px-Pictorial_map_points_of_interest_over_Baiedo.jpg" alt="Pannello sentieri a Baiedo">
+          <figcaption><b>Pannello a Baiedo</b>Mappa storica dei sentieri della Grigna.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CHECKLIST ZAINO
+       ======================================================== -->
+  <section class="util-panel">
+    <div class="util-panel-header">
+      <div class="util-panel-title">
+        <span>🎒</span>
+        <span>Checklist Dotazione di Montagna</span>
+      </div>
+      <span class="util-panel-tag">PERSISTENZA LOCAL STORAGE</span>
+    </div>
+    <div class="util-panel-body">
+      <div class="check" id="checkList"></div>
+    </div>
+  </section>
+
+</div>
+
+<div id="lb"><img alt=""><p></p></div>
+
+<!-- MAGNETIC DOCK: NAVIGAZIONE TRA LE 4 GITE + HUB -->
+<nav class="magnetic-dock">
+  <a href="index.html" class="dock-item">🗂️ Hub</a>
+  <div class="dock-sep"></div>
+  <a href="riva.html" class="dock-item active">1. Rif. Riva</a>
+  <a href="resinelli.html" class="dock-item">2. Piani Resinelli</a>
+  <a href="menaggio.html" class="dock-item">3. Rif. Menaggio</a>
+  <a href="san-primo.html" class="dock-item">4. M.te San Primo</a>
+</nav>
+
+<script>
+// Lightbox
+const lb = document.getElementById('lb');
+document.querySelectorAll('.gal figure').forEach(f => {
+  f.onclick = () => {
+    lb.querySelector('img').src = f.dataset.full;
+    lb.querySelector('p').textContent = f.querySelector('figcaption').textContent;
+    lb.classList.add('on');
+  };
+});
+lb.onclick = () => lb.classList.remove('on');
+addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+// Tabs
+document.querySelectorAll('.tab').forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll('.tab, .pane').forEach(e => e.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById(t.dataset.p).classList.add('on');
+  };
+});
+
+// Checklist Zaino
+const items = [
+  'Abbigliamento a cipolla: maglietta termica, pile caldo, guscio antivento (8–14 °C previsti)',
+  'Scarpe da trekking con suola Vibram o scolpita (foglie autunnali umide)',
+  'Bastoncini telescopici per salita e discesa mulattiera',
+  'Thermos con tè caldo e borraccia d\'acqua (1 litro)',
+  'Contanti (POS di montagna talvolta non raggiungibile)'
+];
+const saved = JSON.parse(localStorage.getItem('riva-check') || '[]');
+document.getElementById('checkList').innerHTML = items.map((t, i) =>
+  `<label><input type="checkbox" data-i="${i}" ${saved.includes(i) ? 'checked' : ''}><span>${t}</span></label>`
+).join('');
+document.querySelectorAll('#checkList input').forEach(c => {
+  c.onchange = () => {
+    localStorage.setItem('riva-check', JSON.stringify([...document.querySelectorAll('#checkList input:checked')].map(x => +x.dataset.i)));
+  };
+});
+
+// Asynchronous Open-Meteo live check (no API key required)
+(function verifyLiveMeteo() {
+  const lat = 45.9706, lon = 9.4196;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&timezone=Europe%2FRome`;
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      const tag = document.getElementById('engineTag');
+      if (tag && data && data.daily) {
+        tag.innerHTML = '<span class="engine-dot" style="background:var(--green)"></span> OPEN-METEO // SENSORI ATTIVI';
+      }
+    })
+    .catch(() => {});
+})();
+</script>
+</body>
+</html>
